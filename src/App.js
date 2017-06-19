@@ -1,19 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Modal from './modal/modal';
+
+import styles from './App.css';
 
 class App extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = { modalOpen: props.opened };
+  }
+  
+  toggleModal() {
+    const state = this.state.modalOpen;
+    this.setState( { 
+      modalOpen: !state
+    } );
+
+    if (!state) {
+      document.body.className = styles.noScroll;
+    } else {
+      document.body.className = '';
+    }
+  }
+  
   render() {
+    const { modalOpen } = this.state;
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <div>
+        <Modal show={ modalOpen } onClose={ this.toggleModal.bind(this) }></Modal>
+          
+        <button className={styles.btn} 
+          onClick={ () => this.toggleModal()}>
+            Open Modal
+        </button>
+       </div>
     );
   }
 }
