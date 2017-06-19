@@ -187,6 +187,9 @@ module.exports = {
                     importLoaders: 1,
                     minimize: true,
                     sourceMap: true,
+                    modules: true,
+                    localIdentName: '[name]__[local]___[hash:base64:5]',
+                    camelCase: 'dashes'
                   },
                 },
                 {
