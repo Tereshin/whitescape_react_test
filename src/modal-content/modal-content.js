@@ -5,7 +5,7 @@ class ModalContent extends Component {
     
     return (
       <div>
-        content
+        Modal body
       </div>
     )
   }

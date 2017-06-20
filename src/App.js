@@ -29,11 +29,10 @@ class App extends Component {
       <div>
         <Modal show={ modalOpen } onClose={ this.toggleModal.bind(this) }></Modal>
           
-        <button className={styles.btn} 
-          onClick={ () => this.toggleModal()}>
-            Open Modal
+        <button className={styles.btn} onClick={ () => this.toggleModal()}>
+          <span>Open Modal</span>
         </button>
-       </div>
+      </div>
     );
   }
 }

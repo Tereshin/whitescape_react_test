@@ -1,7 +1,4 @@
 .modal-backdrop {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -10,11 +7,14 @@
   z-index: 2000;
   visibility: hidden;
   backface-visibility: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .modal {
-  height: 400px;
-  width: 400px;
+  margin: 10px;
+  height: 1000px;
+  width: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -42,6 +42,11 @@
   height: 30px;
   position: relative;
   padding: 8px;
+  border-bottom: 1px solid #dedede;
+}
+
+.modal-header > h4 {
+  margin: 8px 0;
 }
 
 .modal-body {
@@ -53,8 +58,8 @@
   display: block;
   width: 24px;
   height: 24px;
-  top: 0;
-  right: 0;
+  top: 8px;
+  right: 8px;
 }
 
 .modal-close:hover,
@@ -82,4 +87,11 @@
 
 .modal-close:after {
   transform: rotate(-45deg);
+}
+
+@media (min-width: 769px) {
+  .modal {
+    width: 600px;
+    margin: 30px auto;
+  }
 }

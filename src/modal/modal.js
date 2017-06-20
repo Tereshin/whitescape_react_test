@@ -32,15 +32,15 @@ class Modal extends Component {
   }
 
   render() {
-    const { show } = this.props;
 
-    
+    const { show } = this.props;
 
     return (
       <div className={(show) ? styles.modalBackdrop+' '+styles.modalIn : styles.modalBackdrop} onClick={this.onOverlayClick.bind(this)}>
         <div className={styles.modal} onClick={this.onDialogClick} >
           <div className={styles.modalHeader}>
             <span className={styles.modalClose} onClick={this.props.onClose}></span>
+            <h4>Modal title</h4>
           </div>
           <div className={styles.modalBody}>
             <ModalContent></ModalContent>
