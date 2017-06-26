@@ -8,6 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { modalOpen: props.opened };
+    this.toggleModal = this.toggleModal.bind(this);
   }
   
   toggleModal() {
@@ -27,9 +28,9 @@ class App extends Component {
     const { modalOpen } = this.state;
     return (
       <div>
-        <Modal show={ modalOpen } onClose={ this.toggleModal.bind(this) }></Modal>
+        <Modal show={ modalOpen } onClose={ this.toggleModal }></Modal>
           
-        <button className={styles.btn} onClick={ () => this.toggleModal()}>
+        <button className={styles.btn} onClick={ this.toggleModal }>
           <span>Open Modal</span>
         </button>
       </div>

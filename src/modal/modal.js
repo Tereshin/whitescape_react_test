@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
+import ClassNames from 'classnames/bind';
 import ModalContent from '../modal-content/modal-content';
 
 import styles from './modal.css';
 
+let ModalStyles = ClassNames.bind(styles);
+
 class Modal extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.onOverlayClick = this.onOverlayClick.bind(this);
+    this.listenKeyboard = this.listenKeyboard.bind(this);
+  }
 
   listenKeyboard(event) {
     if (event.key === 'Escape' || event.keyCode === 27) {
@@ -13,13 +23,13 @@ class Modal extends Component {
 
   componentDidMount() {
     if (this.props.onClose) {
-      window.addEventListener('keydown', this.listenKeyboard.bind(this), true);
+      window.addEventListener('keydown', this.listenKeyboard, true);
     }
   }
 
   componentWillUnmount() {
     if (this.props.onClose) {
-      window.removeEventListener('keydown', this.listenKeyboard.bind(this), true);
+      window.removeEventListener('keydown', this.listenKeyboard, true);
     }
   }
 
@@ -34,12 +44,17 @@ class Modal extends Component {
   render() {
 
     const { show } = this.props;
+    let ClassName = ModalStyles({
+      modalBackdrop: true,
+      modalIn: show
+    });
 
+    
     return (
-      <div className={(show) ? styles.modalBackdrop+' '+styles.modalIn : styles.modalBackdrop} onClick={this.onOverlayClick.bind(this)}>
-        <div className={styles.modal} onClick={this.onDialogClick} >
+      <div className={ ClassName } onClick={ this.onOverlayClick }>
+        <div className={styles.modal} onClick={ this.onDialogClick } >
           <div className={styles.modalHeader}>
-            <span className={styles.modalClose} onClick={this.props.onClose}></span>
+            <span className={styles.modalClose} onClick={ this.props.onClose }></span>
             <h4>Modal title</h4>
           </div>
           <div className={styles.modalBody}>
